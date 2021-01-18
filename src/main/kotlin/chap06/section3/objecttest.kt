@@ -16,7 +16,7 @@ class C {
 
     fun bar() {
         val x1 = foo().x
-        val x2 = publicFoo().x
+        val x2 = publicFoo()
     }
 }
 
