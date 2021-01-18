@@ -1,24 +1,32 @@
 package chap06.section2
 
 class LazyTest {
-    init{
+    init {
         println("init block")
     }
 
-    //결국 String 객체.
     val subject by lazy {
         println("lazy initialized")
-        "Kotlin Programming"    //lazy반환값.
+        "Kotlin Programming"
     }
 
     fun flow() {
-        println("not nitialized")
-        println("subject one : $subject")   //최초 초기화 지점.
-        println("subject two : $subject")   //이미 초기화 된 값 사용.
+        println("not initialized")
+        println("Subject one: $subject")    //최초 초기화 시점
+        println("Subject two: $subject")    //이미 초기화된 값 사용
     }
+
 }
 
+/*
+    by lazy : val에서만, lazyinit : var에서만
+    lazyinit에 val을 넣으면 에러메세지 뜸 :
+            lateinit' modifier is allowed only on mutable properties
+    lateinit : var에서만    여기서 핵심은 프로퍼티에 "최초로 접근한 시점"에 해당 프로퍼티가 초기화 된다는 것.
+    그 이후에는 해당 프로퍼티의 초기화 된 내용을 재사용.
+*/
+
 fun main() {
-    val test = LazyTest()   //여기서 아직 subject는 초기화 되지 않음.
+    val test = LazyTest()
     test.flow()
 }
